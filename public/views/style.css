@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #070625;
+    color: white;
+    background-image: url("/assets/background-stars.svg");
+    font-family: "Zalando Sans", sans-serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 30px 20px;
+}
+
+hr {
+    background-color: #383850;
+    border: none;
+    height: 2px;
+}
+
+nav h2 {
+    font-size: 36px;
+}
+
+a {
+    color: white;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+.navList {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    /* padding: 100px; */
+}
+
+.imgContainer {
+    width: 60%;
+    padding: 181px 350px;
+    position: relative;
+}
+
+.info {
+    width: 40%;
+    padding: 150px 250px 0 0;
+}
+
+.info h1 {
+    font-size: 80px;
+}
+
+.info p {
+    line-height: 24px;
+}
+
+button {
+    border: 1px solid #383850;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    width: 70%;
+    cursor: pointer;
+}
+
+footer {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.addInfo {
+    padding: 50px;
+    border: 1px solid #383850;
+    width: 18%;
+}
+
+footer p {
+    color: #828393;
+    font-size: 20px;
+}
+
+footer h2 {
+    font-size: 36px;
+    margin-top: 10px;
+}
+
+img{
+    height: 400px;
+    width: 400px;
+}
+
+
+#surfacegeology{
+    position: absolute;
+    bottom: 100px;
+    z-index: 1;
+    left: 400px;
+    display: none;
+
+    height: 300px;
+    width: 300px;
+}

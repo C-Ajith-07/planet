@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= planet.name %>
+    </title>
+    <link rel="stylesheet" href="views/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <h2>The Planets</h2>
+            <div class="navList">
+                <% planets.forEach(p => { %>
+                    <a href="/<%= p.name %>">
+                        <%= p.name %>
+                    </a>
+                    <% }) %>
+            </div>
+        </nav>
+        <hr>
+
+
+        <main>
+            <div class="imgContainer">
+                <img id="planetImage" src="<%= planet.images.planet %>" alt="<%= planet.name %>">
+                <img id="surfacegeology" src="<%= planet.images.planet %>" alt="">
+            </div>
+            <div class="info">
+                <h1>
+                    <%= planet.name %>
+                </h1>
+                <br>
+                <p id="planetCont">
+                    <%= planet.overview.content %>
+                </p>
+                <br>
+                <p id="planetSrc">
+                    Source: <a href="<%= planet.overview.source %>" target="_blank">Wikipedia</a>
+                </p>
+
+                <button id="overViewBtn">01 overview</button>
+                <button id="internalBtn">02 Internal Structure</button>
+                <button id="surfaceBtn">03 Surface Geology</button>
+            </div>
+        </main>
+        <footer>
+            <div class="addInfo">
+                <p>Rotation Time</p>
+                <h2>
+                    <%=planet.rotation%>
+                </h2>
+            </div>
+            <div class="addInfo">
+                <p>Revolution Time</p>
+                <h2>
+                    <%=planet.revolution%>
+                </h2>
+            </div>
+            <div class="addInfo">
+                <p>Radius</p>
+                <h2>
+                    <%=planet.radius%>
+                </h2>
+
+            </div>
+            <div class="addInfo">
+                <p>Average Temp</p>
+                <h2>
+                    <%=planet.temperature %>
+                </h2>
+            </div>
+        </footer>
+    </div>
+    <script>
+        const planetData = <%- JSON.stringify(planet) %>;
+        console.log(planetData);
+        let overViewBtn = document.getElementById("overViewBtn");
+        let internalBtn = document.getElementById("internalBtn");
+        let surfaceBtn = document.getElementById("surfaceBtn");
+        overViewBtn.style.backgroundColor = planetData.colors.background
+
+        const planetImage = document.getElementById('planetImage');
+        const planetContent = document.getElementById('planetContent');
+        const planetSource = document.getElementById('planetSource');
+        const planetSurface = document.getElementById("surfacegeology")
+        planetSurface.style.display = "none";
+        overViewBtn.addEventListener("click", () => {
+            overViewBtn.style.backgroundColor = planetData.colors.background
+            internalBtn.style.backgroundColor = "transparent"
+            surfaceBtn.style.backgroundColor = "transparent"
+            content(planetData.overview , planetData.images.planet);
+            planetSurface.style.display = "none";
+
+        })
+        internalBtn.addEventListener("click", () => {
+            internalBtn.style.backgroundColor = planetData.colors.background
+            overViewBtn.style.backgroundColor = "transparent"
+            surfaceBtn.style.backgroundColor = "transparent"
+            content(planetData.structure , planetData.images.internal);
+            planetSurface.style.display = "none";
+
+        })
+        surfaceBtn.addEventListener("click", () => {
+            surfaceBtn.style.backgroundColor = planetData.colors.background
+            overViewBtn.style.backgroundColor = "transparent"
+            internalBtn.style.backgroundColor = "transparent"
+            printSurface(planetData.geology , planetData.images);
+
+        })
+
+
+        function content(planetDatas , type){
+            planetImage.src = type;
+            planetCont.textContent = planetDatas.content;
+            planetSrc.href = planetDatas.source;
+
+        }
+
+        function printSurface(planetDatas , type){
+
+            planetImage.src = type.planet;
+            planetSurface.src = type.geology;
+            planetSurface.style.display = "block";
+            planetCont.textContent = planetDatas.content;
+            planetSrc.href = planetDatas.source;
+        }
+    </script>
+</body>
+
+</html>
